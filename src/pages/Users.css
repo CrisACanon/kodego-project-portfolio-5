@@ -1,0 +1,17 @@
+.input-card {
+  margin-top: 20px;
+}
+
+.text-input {
+  margin-bottom: 0.5rem;
+  margin-left: 0.5 rem;
+  margin-right: 0.5 rem;
+}
+
+.btn-action {
+  display: flex;
+
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+}
