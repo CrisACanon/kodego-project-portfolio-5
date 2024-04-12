@@ -1,3 +1,10 @@
+.user-title {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
 .input-card {
   margin-top: 20px;
 }

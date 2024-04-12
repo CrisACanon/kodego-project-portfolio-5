@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
@@ -6,12 +6,11 @@ import {
   MDBInput,
   MDBCard,
   MDBCardBody,
-  MDBTextArea,
 } from "mdb-react-ui-kit";
 import useAPI from "../http";
-import "../pages/Contact.css";
+import "../services/CreateUser.css";
 
-function Contact() {
+function CreateUser() {
   const api = useAPI();
   const navigate = useNavigate();
 
@@ -26,17 +25,16 @@ function Contact() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    api.post("/contact.php", inputs).then(function (response) {
+    api.post("/users.php", inputs).then(function (response) {
       console.log(response.data);
-      navigate("/");
+      navigate("/users");
     });
   };
-
   return (
     <>
       <MDBContainer>
         <div className="input-card">
-          <MDBCard className="user-title">Contact Form</MDBCard>
+          <MDBCard className="user-title">Create User</MDBCard>
           <hr />
           <MDBCard>
             <MDBCardBody>
@@ -52,10 +50,10 @@ function Contact() {
                 <MDBInput
                   onChange={handleChange}
                   className="text-input"
-                  label="Customer Name*"
+                  label="Username*"
                   type="text"
                   size="lg"
-                  name="customer_name"
+                  name="name"
                   required
                 />
                 <MDBInput
@@ -64,7 +62,7 @@ function Contact() {
                   label="Email Address*"
                   type="text"
                   size="lg"
-                  name="email_address"
+                  name="email"
                   required
                 />
                 <MDBInput
@@ -73,16 +71,17 @@ function Contact() {
                   label="Contact Number*"
                   type="text"
                   size="lg"
-                  name="contact_number"
+                  name="contact"
                   required
                 />
-                <MDBTextArea
+                <MDBInput
                   onChange={handleChange}
-                  label="Message"
-                  className="text-input"
-                  id="textAreaExample"
-                  name="message"
-                  rows="{10}"
+                  className="text-input*"
+                  label="Address"
+                  type="text"
+                  size="lg"
+                  name="address"
+                  required
                 />
                 <MDBBtn
                   className="me-1 mt-2"
@@ -90,14 +89,14 @@ function Contact() {
                   type="submit"
                   rounded
                 >
-                  Send Message
+                  Create User
                 </MDBBtn>
                 <MDBBtn
                   className="me-1"
                   color="warning"
                   rounded="true"
                   tag="a"
-                  href="/"
+                  href="/users"
                 >
                   Cancel
                 </MDBBtn>
@@ -109,4 +108,4 @@ function Contact() {
     </>
   );
 }
-export default Contact;
+export default CreateUser;

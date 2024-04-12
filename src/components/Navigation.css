@@ -18,8 +18,8 @@ nav {
   background-color: #0f172a;
   padding: 0 1rem;
   gap: 2rem;
-  position: sticky;
-  top: 0;
+  /*position: sticky;
+  top: 0;*/
 }
 
 nav .title {

@@ -33,29 +33,31 @@ const Navigation = () => {
           <li>
             <NavLink to="/shop">Shop</NavLink>
           </li>
-          <li>
-            <NavLink to="/services">Sevices</NavLink>
-          </li>
-          <li>
-            <NavLink to="/brands">Brands</NavLink>
-          </li>
+
           <li>
             <NavLink to="/contact">Contact Us</NavLink>
           </li>
           <li>
             <NavLink to="/users">Users</NavLink>
           </li>
+
+          <li>
+            <NavLink to="/brands">Brands</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/producttype">Product Type</NavLink>
+          </li>
           <li>
             <NavLink to="/products">Products</NavLink>
           </li>
           <li>
-            <NavLink to="/orders">Orders</NavLink>
+            <NavLink to="/promo">Promo</NavLink>
           </li>
           <li>
-            <NavLink to="/category">Category</NavLink>
-          </li>
-          <li>
-            <NavLink to="/usertype">User Type</NavLink>
+            <NavLink to="/cart">
+              <i className="fas fa-cart-plus"></i>
+            </NavLink>
           </li>
         </ul>
       </nav>

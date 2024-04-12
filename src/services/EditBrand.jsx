@@ -1,21 +1,31 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   MDBContainer,
   MDBBtn,
   MDBInput,
   MDBCard,
   MDBCardBody,
-  MDBTextArea,
 } from "mdb-react-ui-kit";
+import "../services/EditBrand.css";
 import useAPI from "../http";
-import "../pages/Contact.css";
 
-function Contact() {
+function EditBrand() {
   const api = useAPI();
   const navigate = useNavigate();
-
   const [inputs, setInputs] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    getBrand();
+  }, []);
+
+  function getBrand() {
+    api.get(`/brands.php/${id}`).then(function (response) {
+      console.log(response.data);
+      setInputs(response.data);
+    });
+  }
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -26,9 +36,9 @@ function Contact() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    api.post("/contact.php", inputs).then(function (response) {
+    api.put(`/brands.php/${id}`, inputs).then(function (response) {
       console.log(response.data);
-      navigate("/");
+      navigate("/brands");
     });
   };
 
@@ -36,7 +46,7 @@ function Contact() {
     <>
       <MDBContainer>
         <div className="input-card">
-          <MDBCard className="user-title">Contact Form</MDBCard>
+          <MDBCard className="user-title">Edit Brand</MDBCard>
           <hr />
           <MDBCard>
             <MDBCardBody>
@@ -50,54 +60,28 @@ function Contact() {
                 onSubmit={handleSubmit}
               >
                 <MDBInput
-                  onChange={handleChange}
+                  value={inputs.brand}
                   className="text-input"
-                  label="Customer Name*"
+                  label="Brand Title*"
                   type="text"
                   size="lg"
-                  name="customer_name"
-                  required
-                />
-                <MDBInput
+                  name="brand"
                   onChange={handleChange}
-                  className="text-input"
-                  label="Email Address*"
-                  type="text"
-                  size="lg"
-                  name="email_address"
-                  required
-                />
-                <MDBInput
-                  onChange={handleChange}
-                  className="text-input"
-                  label="Contact Number*"
-                  type="text"
-                  size="lg"
-                  name="contact_number"
-                  required
-                />
-                <MDBTextArea
-                  onChange={handleChange}
-                  label="Message"
-                  className="text-input"
-                  id="textAreaExample"
-                  name="message"
-                  rows="{10}"
                 />
                 <MDBBtn
                   className="me-1 mt-2"
                   color="success"
                   type="submit"
-                  rounded
+                  rounded="true"
                 >
-                  Send Message
+                  Save Changes
                 </MDBBtn>
                 <MDBBtn
-                  className="me-1"
+                  className="me-1 mt-2"
                   color="warning"
                   rounded="true"
                   tag="a"
-                  href="/"
+                  href="/brands"
                 >
                   Cancel
                 </MDBBtn>
@@ -109,4 +93,4 @@ function Contact() {
     </>
   );
 }
-export default Contact;
+export default EditBrand;

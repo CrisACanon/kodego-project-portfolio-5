@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
@@ -14,7 +14,6 @@ import "../pages/Contact.css";
 function Contact() {
   const api = useAPI();
   const navigate = useNavigate();
-
   const [inputs, setInputs] = useState([]);
 
   const handleChange = (event) => {
@@ -31,7 +30,6 @@ function Contact() {
       navigate("/");
     });
   };
-
   return (
     <>
       <MDBContainer>
@@ -90,7 +88,7 @@ function Contact() {
                   type="submit"
                   rounded
                 >
-                  Send Message
+                  Create User
                 </MDBBtn>
                 <MDBBtn
                   className="me-1"

@@ -1,0 +1,43 @@
+.carousel {
+  height: 450px;
+  object-fit: fill;
+}
+
+.slider {
+  padding: 1rem;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  height: 350px;
+  width: 100%;
+}
+
+.box {
+  height: 200px;
+  width: 150px;
+}
+
+.box img {
+  height: 200px;
+  width: 90%;
+  object-fit: fill;
+  margin: auto;
+  cursor: pointer;
+}
+
+.box h3 {
+  text-align: center;
+  color: black;
+}
+
+.slick-slide div {
+  margin: 1rem;
+}
+
+.slick-next {
+  right: -1px;
+  color: black;
+}
+.slick-prev {
+  left: 15px;
+  color: black;
+}

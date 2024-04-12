@@ -1,7 +1,19 @@
+.user-title {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
 .input-card {
   margin-top: 20px;
 }
 
+.message {
+  font-size: 20px;
+  color: red;
+  text-align: center;
+}
 .text-input {
   margin-bottom: 0.5rem;
   margin-left: 0.5 rem;
@@ -10,7 +22,8 @@
 
 .btn-action {
   display: flex;
+
   align-items: center;
   justify-content: start;
-  gap: 1rem;
+  gap: 0.5rem;
 }

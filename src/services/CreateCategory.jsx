@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
@@ -6,15 +6,13 @@ import {
   MDBInput,
   MDBCard,
   MDBCardBody,
-  MDBTextArea,
 } from "mdb-react-ui-kit";
 import useAPI from "../http";
-import "../pages/Contact.css";
+import "../services/CreateCategory.css";
 
-function Contact() {
+function CreateCategory() {
   const api = useAPI();
   const navigate = useNavigate();
-
   const [inputs, setInputs] = useState([]);
 
   const handleChange = (event) => {
@@ -26,17 +24,16 @@ function Contact() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    api.post("/contact.php", inputs).then(function (response) {
+    api.post("/category.php", inputs).then(function (response) {
       console.log(response.data);
-      navigate("/");
+      navigate("/category");
     });
   };
-
   return (
     <>
       <MDBContainer>
         <div className="input-card">
-          <MDBCard className="user-title">Contact Form</MDBCard>
+          <MDBCard className="user-title">Create Category</MDBCard>
           <hr />
           <MDBCard>
             <MDBCardBody>
@@ -52,37 +49,11 @@ function Contact() {
                 <MDBInput
                   onChange={handleChange}
                   className="text-input"
-                  label="Customer Name*"
+                  label="Category Title*"
                   type="text"
                   size="lg"
-                  name="customer_name"
+                  name="category"
                   required
-                />
-                <MDBInput
-                  onChange={handleChange}
-                  className="text-input"
-                  label="Email Address*"
-                  type="text"
-                  size="lg"
-                  name="email_address"
-                  required
-                />
-                <MDBInput
-                  onChange={handleChange}
-                  className="text-input"
-                  label="Contact Number*"
-                  type="text"
-                  size="lg"
-                  name="contact_number"
-                  required
-                />
-                <MDBTextArea
-                  onChange={handleChange}
-                  label="Message"
-                  className="text-input"
-                  id="textAreaExample"
-                  name="message"
-                  rows="{10}"
                 />
                 <MDBBtn
                   className="me-1 mt-2"
@@ -90,14 +61,14 @@ function Contact() {
                   type="submit"
                   rounded
                 >
-                  Send Message
+                  Create Category
                 </MDBBtn>
                 <MDBBtn
-                  className="me-1"
+                  className="me-1 mt-2"
                   color="warning"
                   rounded="true"
                   tag="a"
-                  href="/"
+                  href="/category"
                 >
                   Cancel
                 </MDBBtn>
@@ -109,4 +80,5 @@ function Contact() {
     </>
   );
 }
-export default Contact;
+
+export default CreateCategory;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-//import { Link } from "react-router-dom";
+
 import {
   MDBTable,
   MDBTableHead,
@@ -10,27 +10,26 @@ import {
   MDBBtn,
 } from "mdb-react-ui-kit";
 import useAPI from "../http";
-import "./Users.css";
+import "./ProductType.css";
 
-function Users() {
+function PromoCarousel() {
   const api = useAPI();
-  const [users, setUsers] = useState([]);
+  const [promo, setPromo] = useState([]);
 
   useEffect(() => {
-    getUsers();
+    getPromo();
   }, []);
 
-  function getUsers() {
-    api.get("/users.php").then(function (response) {
-      console.log(response.data);
-      setUsers(response.data);
+  function getPromo() {
+    api.get("/promocarousel.php").then(function (response) {
+      setPromo(response.data);
     });
   }
 
-  const deleteUser = (id) => {
-    api.delete(`/users.php/${id}`).then(function (response) {
+  const deletePromo = (id) => {
+    api.delete(`/promocarousel.php/${id}`).then(function (response) {
       console.log(response.data);
-      getUsers();
+      getPromo();
     });
   };
 
@@ -38,7 +37,7 @@ function Users() {
     <>
       <MDBContainer>
         <div className="input-card">
-          <h2 className="text-center">Users List</h2>
+          <h2 className="text-center">Promo List</h2>
         </div>
 
         <MDBBtn
@@ -46,26 +45,24 @@ function Users() {
           rounded="true"
           size="sm"
           tag="a"
-          href="/create/user"
+          href="/create/promo"
         >
-          + Create User
+          + Create Promo
         </MDBBtn>
 
         <div style={{ marginTop: "10px", marginBottom: "20px" }}>
           <MDBRow>
             <MDBCol size="12">
-              <MDBTable>
+              <MDBTable responsive>
                 <MDBTableHead dark>
                   <tr>
-                    <th scope="col">User ID</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email Address</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Contact #</th>
+                    <th scope="col">No. </th>
+                    <th scope="col">Promo Title</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </MDBTableHead>
-                {users.length === 0 ? (
+                {promo.length === 0 ? (
                   <MDBTableBody className="align-center mb-0">
                     <tr>
                       <td colSpan={8} className="text-center mb-0">
@@ -74,14 +71,19 @@ function Users() {
                     </tr>
                   </MDBTableBody>
                 ) : (
-                  users.map((item, index) => (
+                  promo.map((item, index) => (
                     <MDBTableBody key={index}>
                       <tr>
-                        <td>{item.id}</td>
-                        <td>{item.name}</td>
-                        <td>{item.email}</td>
-                        <td>{item.address}</td>
-                        <td>{item.contact}</td>
+                        <td>{index + 1}</td>
+                        <td>{item.prodtype}</td>
+                        <td>
+                          {" "}
+                          <img
+                            src={`http://localhost/pdo-php-api/promo/${item.promo_image}`}
+                            height={40}
+                            width={70}
+                          />
+                        </td>
                         <td>
                           <div className="btn-action">
                             <MDBBtn
@@ -89,7 +91,7 @@ function Users() {
                               rounded="true"
                               size="sm"
                               tag="a"
-                              href={`/user/${item.id}/edit`}
+                              href={`/producttype/${item.promo_Id}/edit`}
                             >
                               Edit
                             </MDBBtn>
@@ -98,7 +100,7 @@ function Users() {
                               color="danger"
                               rounded="true"
                               size="sm"
-                              onClick={() => deleteUser(item.id)}
+                              onClick={() => deletePromo(item.promo_Id)}
                             >
                               Delete
                             </MDBBtn>
@@ -117,4 +119,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default PromoCarousel;

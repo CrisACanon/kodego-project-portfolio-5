@@ -1,0 +1,32 @@
+.prod-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.input-card {
+  margin-top: 10px;
+}
+
+.message {
+  font-size: 20px;
+  color: red;
+  text-align: center;
+}
+.text-input {
+  margin-bottom: 0.5rem;
+  margin-left: 0.5 rem;
+  margin-right: 0.5 rem;
+}
+
+.btn-action {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+}
+
+.hidden {
+  width: 100%;
+}

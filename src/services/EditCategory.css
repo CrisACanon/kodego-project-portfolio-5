@@ -1,0 +1,17 @@
+.user-title {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.input-card {
+  margin-top: 20px;
+}
+
+.btn-action {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+}
